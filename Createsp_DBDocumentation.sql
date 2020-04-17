@@ -292,7 +292,6 @@ WHILE @@FETCH_STATUS = 0
 BEGIN
 IF @HierarchyType =''database'' 
 	BEGIN
-		SET @Property = @HierarchyType;
 		SET @Level0 = NULL;
 		SET @Name0  = NULL;
 		SET @Level1 = NULL;
