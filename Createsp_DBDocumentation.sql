@@ -290,7 +290,17 @@ OPEN Object_Cursor;
 FETCH NEXT FROM Object_Cursor INTO @objectName,@Name0, @Name1, @Name2, @HierarchyType, @Property, @Function, @CommandText, @Hierarchy, @Level0, @Level1, @Level2, @ObjectId
 WHILE @@FETCH_STATUS = 0
 BEGIN
-IF @HierarchyType =''database'' SET @ObjectId = 0;
+IF @HierarchyType =''database'' 
+	BEGIN
+		SET @Property = @HierarchyType;
+		SET @Level0 = NULL;
+		SET @Name0  = NULL;
+		SET @Level1 = NULL;
+		SET @Name1 = NULL;
+		SET @Level2 = NULL;
+		SET @Name2 = NULL;
+		SET @ObjectId = 0;
+	END;
 
 SET @Message = CASE WHEN @Hierarchy IS NULL THEN FORMATMESSAGE(''hierarchy type of %s does not exist'',@HierarchyType)
 	ELSE ''missing object information. try again!''
