@@ -1,12 +1,14 @@
 # Documenting SQL Server objects in a bulk manner
-SQL file which will allow you to document multiple objects at a time
+SQL file which will allow you to document multiple objects at a time.
+
+Please download and install on your SQL Server. 
 
 ### License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](License) 
 ******
 ### Description
 > Procedure that will document multiple objects (on a user database) in bulk fashion.\
-Must has SQL Server 2016 or greater.
+**MUST HAVE SQL Server 2016 or greater.**
 
 Inspiration came from:
 
