@@ -31,7 +31,8 @@ EXEC sys.sp_MS_marksystemobject 'sp_DBDocumentation';
 EXEC('ALTER PROCEDURE sp_DBDocumentation
 (
 	@Documentation	NVARCHAR(MAX)='''',
-	@Helper			BIT	=0		
+	@OutputResults BIT =0,
+	@Helper								BIT	=0		
 )
 AS
 SET NOCOUNT ON; SET XACT_ABORT ON;
@@ -67,9 +68,10 @@ Inspiration came from:
 https://www.red-gate.com/simple-talk/sql/sql-tools/towards-the-self-documenting-sql-server-database/ and
 https://www.red-gate.com/simple-talk/sql/database-delivery/scripting-description-database-tables-using-extended-properties/
 
-There are 2 params:
+There are 3 params:
 @Documentation	NVARCHAR(MAX)	- Must be in JSON format
-@Helper			BIT (DEFAULT 0)	- only call if you want the helper to be visible
+@OutputResults BIT (DEFAULT 0)	- only call if you want the results to be visible
+@Helper								BIT (DEFAULT 0)	- only call if you want the helper to be visible
 
 For the Documentation param, the following keys are required:
 	objectname		- what is the name of the object in schema.object format (ie. dbo.patient, dbo.patient.PatientId, dbo.patient.pk_PatientId)
@@ -151,7 +153,8 @@ EXAMPLES:
 
 
 CHANGE LOG:
-	04/16/2020: initial release [Justin S.]				
+	04/16/2020: initial release				[Justin S.]		
+	04/29/2020: add result param			[Justin S.]		
 *>
 ''
 PRINT @Message
@@ -365,7 +368,8 @@ END
 CLOSE Object_Cursor;
 DEALLOCATE Object_Cursor;
 
-	SELECT * FROM @Result
+				IF @OutputResults = 1
+								SELECT * FROM @Result;
 
 END TRY
 BEGIN CATCH
