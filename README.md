@@ -16,8 +16,9 @@ https://www.red-gate.com/simple-talk/sql/sql-tools/towards-the-self-documenting-
 and https://www.red-gate.com/simple-talk/sql/database-delivery/scripting-description-database-tables-using-extended-properties/ 
 
 There are 2 params:
-- **@Documentation** NVARCHAR(MAX)    - Must be in JSON format 
-- **@Helper**				 BIT (DEFAULT 0)	- only call if you want the helper to be visible 
+- **@Documentation** NVARCHAR(MAX)   - Must be in JSON format 
+- **@OutputResults** BIT (DEFAULT 0) - only call if you want the results to be visible
+- **@Helper**	   BIT (DEFAULT 0) - only call if you want the helper to be visible 
 
 For the Documentation param, the following keys are required: 
 - **objectname**    - what is the name of the object in schema.object format (ie. dbo.patient, dbo.patient.PatientId, dbo.patient.pk_PatientId) 
